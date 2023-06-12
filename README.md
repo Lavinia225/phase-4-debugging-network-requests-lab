@@ -62,12 +62,12 @@ developing your own process.
 
 - Add a new toy when the toy form is submitted
 
-  - How I debugged:
+  - How I debugged: Upon submitting, an code 500 Internal Server Error was received. Looking in the Network tab, the error told me there was an uninitiallized constant in ToysController::Toys. The server logs state this happens on line 10 of the said controller. Toy.all should be singular, but was pluralized. Upon testing, this repaired it.
 
 - Update the number of likes for a toy
 
-  - How I debugged:
+  - How I debugged: Liking resulted in unexpected end of JSON input. Looking at the frontend, it always processes the response as JSON, which the server does not send, and uses the JSON to update toy in state. Backend now renders the updated toy as JSON. Test successful
 
 - Donate a toy to Goodwill (and delete it from our database)
 
-  - How I debugged:
+  - How I debugged: 404 Not found received upon attempting to donate. Looking in the routes file, there was no route for deletion, so it has been added. Test succeeded.
